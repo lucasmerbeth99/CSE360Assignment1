@@ -8,6 +8,7 @@ package cse360assignment02;
  */
 public class AddingMachine {
   private int total;
+  private String history;
   
   /**
    * The AddingMachine method is the constructor for the AddingMachine class.
@@ -15,13 +16,14 @@ public class AddingMachine {
    */
   public AddingMachine () {
     total = 0;  // not needed - included for clarity
+    history = "0";
   }
   
   /**
-   * The getTotal method returns the total of the AddingMachine class.
+   * The getTotal method returns an integer representing the total of the AddingMachine class.
    */
   public int getTotal () {
-    return 0;
+    return this.total;
   }
   
   /**
@@ -30,6 +32,8 @@ public class AddingMachine {
    * @param value an integer that is to be added with total .
    */
   public void add (int value) {
+	  this.total += value;
+	  this.history = this.history + " + " + value;
   }
 
   /**
@@ -38,19 +42,33 @@ public class AddingMachine {
    * @param value an integer that is to be subtracted from total
    */
   public void subtract (int value) {
+	  this.total = this.total - value;
+	  this.history = this.history + " - " + value;
   }
 
   /**
    * The toString method returns the history of transactions as a String.
    */
   public String toString () {
-    return "";
+    return this.history;
   }
 
   /**
-   * The clear method clears the AddingMachine, getting rid of the history
-   * and setting the total to 0.
+   * The clear method clears the AddingMachine, setting the total to 0.
+   * The history is cleared, and set to a String containing 0. 
    */
   public void clear() {
+	  this.total = 0;
+	  this.history = "0";
+  }
+  
+  public static void main(String [] args) {
+	  AddingMachine myCalculator = new AddingMachine();
+	  myCalculator.add (4); 
+	  myCalculator.subtract (2); 
+	  myCalculator.add(5);
+	  System.out.println(myCalculator.toString());
+	  System.out.println(myCalculator.getTotal());
+	  myCalculator.clear();
   }
 }
